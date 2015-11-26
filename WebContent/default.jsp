@@ -4,11 +4,29 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="http://code.jquery.com/jquery-latest.js"></script>  
 <title>Home</title>
 </head>
 <body>
+<script>
 
-<form action="CalController" method="post">
+	$(document).ready(function () {
+			
+		$('#submitIt').click(function(event) {
+			
+			var length = $('#length').val();
+			var breadth = $('#breadth').val();
+			var height = $('#height').val();
+			var unit = $('#unit').val();
+			$.post('VolCalController',{"length":length,"breadth":breadth,"height":height,"unit":unit},function(data){		
+				alert("Ajax successful"+data);				
+			} );
+		})
+		
+	});
+
+</script>
+<!-- <form action="CalController" method="post">
 		Length (In meters): <input type="text" name="given_length"/>
 		Breadth (In meters): <input type="text" name="given_breadth"/>
 		Height (In meters): <input type="text" name="given_height"/>
@@ -19,7 +37,24 @@
   				<option value="yards">yards</option>
 		</select>
 		<input type="submit" value="submit"/>
-</form>
+</form> -->
+
+<div>
+		Length <input type="text" id="length"/>
+		Breadth <input type="text" id="breadth"/>
+		Height <input type="text" id="height"/>
+		<select id="unit">
+  				<option value="meters">meters</option>
+  				<option value="centimeters">centimeters</option>
+  				<option value="inches">inches</option>
+  				<option value="yards">yards</option>
+		</select>
+		<input type="submit" id="submitIt" value="submit"/>
+</div>
+
+<div id="ajax">
+
+</div>
 
 </body>
 </html>

@@ -26,6 +26,7 @@
                 ctx.lineTo(240,160);
                 ctx.stroke();
                 ctx.fillText(side+' '+unit,130,220); 
+                ctx.fillText(side+' '+unit,260,150);
         }
         
         function changeUnit() {

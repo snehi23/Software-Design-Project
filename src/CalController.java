@@ -1,7 +1,6 @@
 
 
 import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,9 +31,9 @@ public class CalController extends HttpServlet {
 			Double B = convert(breadth_in_integer,unit);
 			Double H = convert(height_in_integer,unit);
 			
-			Double cube_side = ( L + 8 * H + 8 * B ) / 12 ;
-				
-			Double cube_volume = (cube_side * cube_side * cube_side) ;
+			Double cube_side = roundValue(( L + 8 * H + 8 * B ) / 12) ;
+					
+			Double cube_volume = roundValue((cube_side * cube_side * cube_side));
 				
 			request.setAttribute("cube_side",cube_side);
 				
@@ -60,6 +59,10 @@ public class CalController extends HttpServlet {
 			length = length / 1.09361;	
 		
 		return length;
+	}
+	
+	Double roundValue(Double a) {
+		return (double) Math.round( a * 100.0) / 100.0;	
 	}
 
 }
