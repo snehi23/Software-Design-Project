@@ -14,45 +14,74 @@
 			
 		$('#submitIt').click(function(event) {
 			
-			var length = $('#length').val();
-			var breadth = $('#breadth').val();
-			var height = $('#height').val();
-			var unit = $('#unit').val();
-			var shape = $('#shape').val();
-			$.post('VolCalController',{"length":length,"breadth":breadth,"height":height,"unit":unit,"shape":shape},function(data){		
+			if (validateInput() == true) {
+				
+				var length = $('#length').val();
+				var breadth = $('#breadth').val();
+				var height = $('#height').val();
+				var unit = $('#unit').val();
+				var shape = $('#shape').val();
+			
+			$.post('VolCalController',
+					{"length":length,"breadth":breadth,"height":height,"unit":unit,"shape":shape},function(data){		
 				//alert("Ajax successful"+JSON.stringify(data));	
 				$("#ajax").text(JSON.stringify(data));
 				//$("#input_div").hide();
 			} );
+			
+			} else {
+				
+				alert("In valid Input Diamensions. Please verify");
+			}
 		})
+		
+		function validateInput() {
+			
+			var length = parseFloat($('#length').val());
+			var breadth = parseFloat($('#breadth').val());
+			var height = parseFloat($('#height').val());
+			var unit = $('#unit').val();
+			var shape = $('#shape').val();
+			
+			if (length <= 0 || breadth <= 0 || height <= 0 || length <= breadth || length <= height) {
+				return false;
+			}		
+			if (shape == 'Cube') {
+				var a = ( length + 8 * breadth + 8 * height ) / 12;				
+				if(a <= 0 || (a - 2 * breadth <= 0) || (a - 2 * height <= 0)) {
+					return false;				
+				}			
+			} 	
+			if (shape == 'Rectangular Pyramid') {	
+				var a = length / 8;
+				if(a <= 0 || (a - 2 * breadth <= 0) || (a - 2 * height <= 0)) {
+					return false;				
+				}			
+			}	
+			if (shape == 'Triangular Pyramid') {	
+				var a = length / 6;
+				if(a <= 0 || a <= breadth || a <= height) {
+					return false;				
+				}			
+			}			
+			return true;	
+		}
 		
 	});
 
 </script>
-<!-- <form action="CalController" method="post">
-		Length (In meters): <input type="text" name="given_length"/>
-		Breadth (In meters): <input type="text" name="given_breadth"/>
-		Height (In meters): <input type="text" name="given_height"/>
-		<select name="units">
-  				<option value="meters">meters</option>
-  				<option value="centimeters">centimeters</option>
-  				<option value="inches">inches</option>
-  				<option value="yards">yards</option>
-		</select>
-		<input type="submit" value="submit"/>
-</form> -->
-
 <div id="input_div">
-		Length <input type="text" id="length"/>
-		Breadth <input type="text" id="breadth"/>
-		Height <input type="text" id="height"/>
-		<select id="unit">
+		<p> Please enter dimensions (In Meters)</p><br>
+		Length: <input type="text" id="length"/>
+		Breadth: <input type="text" id="breadth"/>
+		Height: <input type="text" id="height"/>
+		Unit: <select id="unit">
   				<option value="meters">meters</option>
   				<option value="centimeters">centimeters</option>
   				<option value="inches">inches</option>
   				<option value="yards">yards</option>
 		</select>
-		<select id="shape">
+		Shape: <select id="shape">
   				<option value="Cube">Cube</option>
   				<option value="Rectangular Pyramid">Rectangular Pyramid</option>
   				<option value="Triangular Pyramid">Triangular Pyramid</option>
