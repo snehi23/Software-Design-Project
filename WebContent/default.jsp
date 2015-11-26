@@ -11,6 +11,20 @@
 <script>
 
 	$(document).ready(function () {
+		
+		$("#input_div").hide();
+		
+		$('#img_cube').click(function(event) {	
+			$("#input_div").show();		
+		});
+		
+		$('#img_rp').click(function(event) {		
+			$("#input_div").show();		
+		});
+		
+		$('#img_tp').click(function(event) {	
+			$("#input_div").show();		
+		});	
 			
 		$('#submitIt').click(function(event) {
 			
@@ -43,6 +57,11 @@
 			var unit = $('#unit').val();
 			var shape = $('#shape').val();
 			
+			if (isNaN(length) || isNaN(breadth) || isNaN(height)) {
+				
+				return false;
+			}
+			
 			if (length <= 0 || breadth <= 0 || height <= 0 || length <= breadth || length <= height) {
 				return false;
 			}		
@@ -70,8 +89,16 @@
 	});
 
 </script>
+
+<div id="input_images" >
+		<img src="wooden_frame_cube.jpg"  id="img_cube" height="60" width="60">
+		<img src="rectangular_pyramid.png" id="img_rp" height="60" width="60">
+		<img src="triangular_pyramid.gif"  id="img_tp" height="60" width="60">
+</div>
+
 <div id="input_div">
-		<p> Please enter dimensions (In Meters)</p><br>
+
+		<p> Please enter dimensions (In Meters)</p>
 		Length: <input type="text" id="length"/>
 		Breadth: <input type="text" id="breadth"/>
 		Height: <input type="text" id="height"/>
