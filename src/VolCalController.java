@@ -19,7 +19,8 @@ public class VolCalController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
         
    
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		
 			Map<String, String[]> input = request.getParameterMap();
 		
@@ -41,7 +42,11 @@ public class VolCalController extends HttpServlet {
 			
 			if ("Cube".equals(shape))
 				cube_cases = processCube(L,B,H);
-			
+			else if("Rectangular Pyramid".equals(shape))
+				cube_cases = processRP(L,B,H);
+			else if("Triangular Pyramid".equals(shape))
+				cube_cases = processTP(L,B,H);
+				
 			response.setContentType("application/json");
 			response.getWriter().write(cube_cases.toString());
 		
@@ -50,13 +55,13 @@ public class VolCalController extends HttpServlet {
 	Double convert(Double length,String unit) {
 		
 		if(unit.equals("centimeters"))
-			length = length / 100;
+			length = length * 100;
 		
 		if(unit.equals("inches"))
-			length = length / 39.37;
+			length = length * 39.37;
 		
 		if(unit.equals("yards"))
-			length = length / 1.09361;	
+			length = length * 1.09361;	
 		
 		return length;
 	}
@@ -65,14 +70,38 @@ public class VolCalController extends HttpServlet {
 		return (double) Math.round( a * 100.0) / 100.0;	
 	}
 	
+	JSONObject processCube(Double L, Double B, Double H) {
+		
+		Double cube_side = roundValue(( L + 8 * H + 8 * B ) / 12);
+		Double cube_volume = roundValue((cube_side * cube_side * cube_side));
+		return buildCubeJSON(L,B,H,cube_side,cube_volume);			
+		
+	}
+	
+	JSONObject processRP(Double L, Double B, Double H) {
+		
+		Double cube_side = roundValue(L / 8);
+		Double cube_volume = roundValue((cube_side * cube_side * cube_side) / (3 * Math.sqrt(2)) );
+		return buildRPJSON(L,B,H,cube_side,cube_volume);			
+		
+	}
+	
+	JSONObject processTP(Double L, Double B, Double H) {
+		
+		Double cube_side = roundValue(L / 6);
+		Double cube_volume = roundValue((cube_side * cube_side * cube_side) / (6 * Math.sqrt(2)) );
+		return buildTPJSON(L,B,H,cube_side,cube_volume);			
+		
+	}
+	
 	JSONObject buildCubeJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume) {
 		
 		JSONObject cube_cases = new JSONObject();
 		
 		JSONArray cube_lengths = new JSONArray();
-		cube_lengths.put(cube_side);
-		cube_lengths.put(cube_side - 2*B);
-		cube_lengths.put(cube_side - 2*H);	
+		cube_lengths.put(roundValue(cube_side));
+		cube_lengths.put(roundValue(cube_side - 2*B));
+		cube_lengths.put(roundValue(cube_side - 2*H));	
 		
 		JSONObject cube_info = new JSONObject();
 		cube_info.put("length", cube_lengths);
@@ -83,8 +112,8 @@ public class VolCalController extends HttpServlet {
 		
 		cube_lengths = new JSONArray();
 
-		cube_lengths.put(cube_side - B);
-		cube_lengths.put(cube_side - 2*H);	
+		cube_lengths.put(roundValue(cube_side - B));
+		cube_lengths.put(roundValue(cube_side - 2*H));	
 		
 		cube_info = new JSONObject();
 		cube_info.put("length", cube_lengths);
@@ -94,9 +123,9 @@ public class VolCalController extends HttpServlet {
 		cube_cases.put("case2",cube_info);
 		
 		cube_lengths = new JSONArray();
-		cube_lengths.put(cube_side);
-		cube_lengths.put(cube_side - 2*H);
-		cube_lengths.put(cube_side - 2*B);	
+		cube_lengths.put(roundValue(cube_side));
+		cube_lengths.put(roundValue(cube_side - 2*H));
+		cube_lengths.put(roundValue(cube_side - 2*B));	
 		
 		cube_info = new JSONObject();
 		cube_info.put("length", cube_lengths);
@@ -106,8 +135,8 @@ public class VolCalController extends HttpServlet {
 		cube_cases.put("case3",cube_info);
 		
 		cube_lengths = new JSONArray();
-		cube_lengths.put(cube_side - H);
-		cube_lengths.put(cube_side - 2*B);	
+		cube_lengths.put(roundValue(cube_side - H));
+		cube_lengths.put(roundValue(cube_side - 2*B));	
 		
 		cube_info = new JSONObject();
 		cube_info.put("length", cube_lengths);
@@ -121,11 +150,70 @@ public class VolCalController extends HttpServlet {
 		
 	}
 	
-	JSONObject processCube(Double L, Double B, Double H) {
+	JSONObject buildRPJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume) {
 		
-		Double cube_side = roundValue(( L + 8 * H + 8 * B ) / 12);
-		Double cube_volume = roundValue((cube_side * cube_side * cube_side));
-		return buildCubeJSON(L,B,H,cube_side,cube_volume);			
+		JSONObject cube_cases = new JSONObject();
+		
+		JSONArray cube_lengths = new JSONArray();
+		cube_lengths.put(roundValue(cube_side));
+		cube_lengths.put(roundValue(cube_side - 2*B));
+		
+		JSONObject cube_info = new JSONObject();
+		cube_info.put("length", cube_lengths);
+		cube_info.put("breadth", B);
+		cube_info.put("height", H);
+					
+		cube_cases.put("case1",cube_info);
+		
+		cube_lengths = new JSONArray();
+
+		cube_lengths.put(roundValue(cube_side));
+		cube_lengths.put(roundValue(cube_side - 2*H));	
+		
+		cube_info = new JSONObject();
+		cube_info.put("length", cube_lengths);
+		cube_info.put("breadth", B);
+		cube_info.put("height", H);
+					
+		cube_cases.put("case2",cube_info);
+		
+		cube_lengths = new JSONArray();
+		cube_lengths.put(roundValue(cube_side));
+		cube_lengths.put(roundValue(cube_side - B));
+		
+		
+		cube_info = new JSONObject();
+		cube_info.put("length", cube_lengths);
+		cube_info.put("breadth", B);
+		cube_info.put("height", H);
+					
+		cube_cases.put("case3",cube_info);
+		
+		cube_lengths = new JSONArray();
+		cube_lengths.put(roundValue(cube_side));
+		cube_lengths.put(roundValue(cube_side - H));
+		
+		cube_info = new JSONObject();
+		cube_info.put("length", cube_lengths);
+		cube_info.put("breadth", B);
+		cube_info.put("height", H);
+					
+		cube_cases.put("case4",cube_info);
+		cube_cases.put("volume",cube_volume);
+		
+		return cube_cases;
+		
+	}
+	
+	JSONObject buildTPJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume) {
+		
+		JSONObject cube_cases = new JSONObject();
+		cube_cases.put("length",cube_side);
+		cube_cases.put("breadth",B);
+		cube_cases.put("height",H);
+		cube_cases.put("volume",cube_volume);
+		
+		return cube_cases;
 		
 	}
 

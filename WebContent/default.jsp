@@ -20,7 +20,9 @@
 			var unit = $('#unit').val();
 			var shape = $('#shape').val();
 			$.post('VolCalController',{"length":length,"breadth":breadth,"height":height,"unit":unit,"shape":shape},function(data){		
-				alert("Ajax successful"+JSON.stringify(data));				
+				//alert("Ajax successful"+JSON.stringify(data));	
+				$("#ajax").text(JSON.stringify(data));
+				//$("#input_div").hide();
 			} );
 		})
 		
@@ -40,7 +42,7 @@
 		<input type="submit" value="submit"/>
 </form> -->
 
-<div>
+<div id="input_div">
 		Length <input type="text" id="length"/>
 		Breadth <input type="text" id="breadth"/>
 		Height <input type="text" id="height"/>
