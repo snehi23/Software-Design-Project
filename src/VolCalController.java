@@ -27,6 +27,7 @@ public class VolCalController extends HttpServlet {
 			String breadth = Arrays.asList(input.get("breadth")).get(0);
 			String height = Arrays.asList(input.get("height")).get(0);
 			String unit = Arrays.asList(input.get("unit")).get(0);
+			String shape = Arrays.asList(input.get("shape")).get(0);
 			
 			Double length_in_integer = Double.parseDouble(length);
 			Double breadth_in_integer = Double.parseDouble(breadth);
@@ -36,13 +37,10 @@ public class VolCalController extends HttpServlet {
 			Double B = convert(breadth_in_integer,unit);
 			Double H = convert(height_in_integer,unit);
 			
-			Double cube_side = roundValue(( L + 8 * H + 8 * B ) / 12) ;
-					
-			Double cube_volume = roundValue((cube_side * cube_side * cube_side));
-			
 			JSONObject cube_cases = new JSONObject();
 			
-			cube_cases = buildCubeJSON(L,B,H,cube_side,cube_volume);
+			if ("Cube".equals(shape))
+				cube_cases = processCube(L,B,H);
 			
 			response.setContentType("application/json");
 			response.getWriter().write(cube_cases.toString());
@@ -120,6 +118,14 @@ public class VolCalController extends HttpServlet {
 		cube_cases.put("volume", cube_volume);
 		
 		return cube_cases;
+		
+	}
+	
+	JSONObject processCube(Double L, Double B, Double H) {
+		
+		Double cube_side = roundValue(( L + 8 * H + 8 * B ) / 12);
+		Double cube_volume = roundValue((cube_side * cube_side * cube_side));
+		return buildCubeJSON(L,B,H,cube_side,cube_volume);			
 		
 	}
 

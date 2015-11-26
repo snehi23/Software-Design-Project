@@ -18,8 +18,9 @@
 			var breadth = $('#breadth').val();
 			var height = $('#height').val();
 			var unit = $('#unit').val();
-			$.post('VolCalController',{"length":length,"breadth":breadth,"height":height,"unit":unit},function(data){		
-				alert("Ajax successful"+data);				
+			var shape = $('#shape').val();
+			$.post('VolCalController',{"length":length,"breadth":breadth,"height":height,"unit":unit,"shape":shape},function(data){		
+				alert("Ajax successful"+JSON.stringify(data));				
 			} );
 		})
 		
@@ -48,6 +49,11 @@
   				<option value="centimeters">centimeters</option>
   				<option value="inches">inches</option>
   				<option value="yards">yards</option>
+		</select>
+		<select id="shape">
+  				<option value="Cube">Cube</option>
+  				<option value="Rectangular Pyramid">Rectangular Pyramid</option>
+  				<option value="Triangular Pyramid">Triangular Pyramid</option>
 		</select>
 		<input type="submit" id="submitIt" value="submit"/>
 </div>
