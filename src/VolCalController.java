@@ -2,7 +2,11 @@
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +27,7 @@ public class VolCalController extends HttpServlet {
 			throws ServletException, IOException {
 		
 			Map<String, String[]> input = request.getParameterMap();
+			JSONObject unit_wise_cases = new JSONObject();
 		
 			String length = Arrays.asList(input.get("length")).get(0);
 			String breadth = Arrays.asList(input.get("breadth")).get(0);
@@ -34,36 +39,34 @@ public class VolCalController extends HttpServlet {
 			Double breadth_in_integer = Double.parseDouble(breadth);
 			Double height_in_integer = Double.parseDouble(height);
 			
-			Double L = convert(length_in_integer,unit);
-			Double B = convert(breadth_in_integer,unit);
-			Double H = convert(height_in_integer,unit);
+			double[] Diamensions = converter(unit);	
+			Map<String, Double> perUnitValues = new HashMap<String, Double>();
+			perUnitValues = perUnitValuesCalculator(Diamensions, unit);	
 			
-			JSONObject cube_cases = new JSONObject();
-			
-			if ("Cube".equals(shape))
-				cube_cases = processCube(L,B,H);
-			else if("Rectangular Pyramid".equals(shape))
-				cube_cases = processRP(L,B,H);
-			else if("Triangular Pyramid".equals(shape))
-				cube_cases = processTP(L,B,H);
-				
+			unit_wise_cases = allUnitsPerShapeCalculator(length_in_integer,breadth_in_integer,
+					height_in_integer,perUnitValues,unit,shape);
+						
 			response.setContentType("application/json");
-			response.getWriter().write(cube_cases.toString());
+			response.getWriter().write(unit_wise_cases.toString());
 		
 	}
 	
-	Double convert(Double length,String unit) {
+	double[] converter(String unit) {
 		
-		if(unit.equals("centimeters"))
-			length = length * 100;
+		if ("meters".equals(unit))
+			return new double[]{100,39.37,1.09361};
+			
+		if ("centimeters".equals(unit)) 
+			return new double[]{0.393701,0.0109361,0.01};
+			
+		if ("inches".equals(unit))
+			return new double[]{0.0277778,0.0254,2.54};
+			
+		if ("yards".equals(unit))
+			return new double[]{0.9144,91.44,36};
 		
-		if(unit.equals("inches"))
-			length = length * 39.37;
+		return new double[]{};	
 		
-		if(unit.equals("yards"))
-			length = length * 1.09361;	
-		
-		return length;
 	}
 	
 	Double roundValue(Double a) {
@@ -215,6 +218,92 @@ public class VolCalController extends HttpServlet {
 		
 		return cube_cases;
 		
+	}
+	
+	Map<String, Double> perUnitValuesCalculator(double[] Diamensions, String unit) {
+	
+		Map<String, Double> perUnitValues = new HashMap<String, Double>();
+		
+		if ("meters".equals(unit)) {
+			perUnitValues.put("centimeters", Diamensions[0]);
+			perUnitValues.put("inches", Diamensions[1]);
+			perUnitValues.put("yards", Diamensions[2]);
+		}
+		
+		if ("centimeters".equals(unit)) {
+			perUnitValues.put("inches", Diamensions[0]);
+			perUnitValues.put("yards", Diamensions[1]);
+			perUnitValues.put("meters", Diamensions[2]);
+		}
+		
+		if ("inches".equals(unit)) {
+			perUnitValues.put("yards", Diamensions[0]);
+			perUnitValues.put("meters", Diamensions[1]);
+			perUnitValues.put("centimeters", Diamensions[2]);
+		}
+		
+		if ("yards".equals(unit)) {
+			perUnitValues.put("meters", Diamensions[0]);
+			perUnitValues.put("centimeters", Diamensions[1]);
+			perUnitValues.put("inches", Diamensions[2]);
+		}
+		
+		return perUnitValues;
+	}
+	
+	JSONObject allUnitsPerShapeCalculator(Double length_in_integer,Double breadth_in_integer,
+			Double height_in_integer,Map<String, Double> perUnitValues,String unit,String shape) {
+		
+		JSONObject cases = new JSONObject();
+		JSONObject unit_wise_cases = new JSONObject();
+					
+		if ("Cube".equals(shape)) {
+			
+			cases = processCube(length_in_integer,breadth_in_integer,height_in_integer);
+			unit_wise_cases.put(unit, cases);
+			
+			Iterator<Entry<String, Double>> it = perUnitValues.entrySet().iterator();
+			
+			while(it.hasNext()) {
+				
+				Map.Entry pair = (Map.Entry)it.next();
+				cases = processCube(length_in_integer * (Double)pair.getValue(),
+						breadth_in_integer * (Double)pair.getValue(),height_in_integer * (Double)pair.getValue());
+				unit_wise_cases.put((String) pair.getKey(), cases);
+			}
+		}
+		else if("Rectangular Pyramid".equals(shape)) {
+			
+			cases = processRP(length_in_integer,breadth_in_integer,height_in_integer);
+			unit_wise_cases.put(unit, cases);
+			
+			Iterator<Entry<String, Double>> it = perUnitValues.entrySet().iterator();
+			
+			while(it.hasNext()) {
+				
+				Map.Entry pair = (Map.Entry)it.next();
+				cases = processRP(length_in_integer * (Double)pair.getValue(),
+						breadth_in_integer * (Double)pair.getValue(),height_in_integer * (Double)pair.getValue());
+				unit_wise_cases.put((String) pair.getKey(), cases);
+			}
+		}
+		else if("Triangular Pyramid".equals(shape)) {
+			
+			cases = processTP(length_in_integer,breadth_in_integer,height_in_integer);
+			unit_wise_cases.put(unit, cases);
+			
+			Iterator<Entry<String, Double>> it = perUnitValues.entrySet().iterator();
+			
+			while(it.hasNext()) {
+				
+				Map.Entry pair = (Map.Entry)it.next();
+				cases = processTP(length_in_integer * (Double)pair.getValue(),
+						breadth_in_integer * (Double)pair.getValue(),height_in_integer * (Double)pair.getValue());
+				unit_wise_cases.put((String) pair.getKey(), cases);
+			}
+		}
+		
+		return unit_wise_cases;
 	}
 
 }
