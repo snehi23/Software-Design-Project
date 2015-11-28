@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -107,6 +106,7 @@ public class VolCalController extends HttpServlet {
 		cube_lengths.put(roundValue(cube_side - 2*H));	
 		
 		JSONObject cube_info = new JSONObject();
+		cube_info.put("max_length", cube_side);
 		cube_info.put("length", cube_lengths);
 		cube_info.put("breadth", B);
 		cube_info.put("height", H);
@@ -119,6 +119,7 @@ public class VolCalController extends HttpServlet {
 		cube_lengths.put(roundValue(cube_side - 2*H));	
 		
 		cube_info = new JSONObject();
+		cube_info.put("max_length", cube_side);
 		cube_info.put("length", cube_lengths);
 		cube_info.put("breadth", B);
 		cube_info.put("height", H);
@@ -131,6 +132,7 @@ public class VolCalController extends HttpServlet {
 		cube_lengths.put(roundValue(cube_side - 2*B));	
 		
 		cube_info = new JSONObject();
+		cube_info.put("max_length", cube_side);
 		cube_info.put("length", cube_lengths);
 		cube_info.put("breadth", B);
 		cube_info.put("height", H);
@@ -142,6 +144,7 @@ public class VolCalController extends HttpServlet {
 		cube_lengths.put(roundValue(cube_side - 2*B));	
 		
 		cube_info = new JSONObject();
+		cube_info.put("max_length", cube_side);
 		cube_info.put("length", cube_lengths);
 		cube_info.put("breadth", B);
 		cube_info.put("height", H);
@@ -162,6 +165,7 @@ public class VolCalController extends HttpServlet {
 		cube_lengths.put(roundValue(cube_side - 2*B));
 		
 		JSONObject cube_info = new JSONObject();
+		cube_info.put("max_length", cube_side);
 		cube_info.put("length", cube_lengths);
 		cube_info.put("breadth", B);
 		cube_info.put("height", H);
@@ -174,6 +178,7 @@ public class VolCalController extends HttpServlet {
 		cube_lengths.put(roundValue(cube_side - 2*H));	
 		
 		cube_info = new JSONObject();
+		cube_info.put("max_length", cube_side);
 		cube_info.put("length", cube_lengths);
 		cube_info.put("breadth", B);
 		cube_info.put("height", H);
@@ -186,6 +191,7 @@ public class VolCalController extends HttpServlet {
 		
 		
 		cube_info = new JSONObject();
+		cube_info.put("max_length", cube_side);
 		cube_info.put("length", cube_lengths);
 		cube_info.put("breadth", B);
 		cube_info.put("height", H);
@@ -197,6 +203,7 @@ public class VolCalController extends HttpServlet {
 		cube_lengths.put(roundValue(cube_side - H));
 		
 		cube_info = new JSONObject();
+		cube_info.put("max_length", cube_side);
 		cube_info.put("length", cube_lengths);
 		cube_info.put("breadth", B);
 		cube_info.put("height", H);
@@ -211,6 +218,7 @@ public class VolCalController extends HttpServlet {
 	JSONObject buildTPJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume) {
 		
 		JSONObject cube_cases = new JSONObject();
+		cube_cases.put("max_length", cube_side);
 		cube_cases.put("length",cube_side);
 		cube_cases.put("breadth",B);
 		cube_cases.put("height",H);
