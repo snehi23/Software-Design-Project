@@ -232,7 +232,7 @@
  
 <div id="ajax">
 		<div id="Shape_Select">
-			<p><H3>Showing Results</H3><p>
+			<p><H3>Showing Result</H3><p>
 		</div>
 		<div class="row">
        	  <div class="output_images">
