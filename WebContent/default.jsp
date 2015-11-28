@@ -24,14 +24,20 @@
 	.output_images img{
 		border: solid;
 		margin-right:14px;
-		margin-bottom:10px;	
+		margin-bottom:10px;
 	}
+	
+	.selectedIMG{
+	box-shadow:2px 12px 15px 2px #833;
+	}
+	
 </style>
 <script>
 
 	var selShape = "";
 	var selunit = "meters";
 	var Obj = null;
+	var selIMG = "";
 	
 	$(document).ready(function () {
 		
@@ -53,11 +59,20 @@
 			$("#input_div").show();		
 		});	
 		
+		$('img').click(function(){
+			   $('.selectedIMG').removeClass('selectedIMG'); // removes the previous selected class
+			
+			   // adds the class to the clicked image
+			   $(this).addClass('selectedIMG');
+			   
+			   selIMG = $(this).prop('name');
+			});
+		
 		$('input:radio[name="out_measure"]').change(
 			    function(){
-			        var u = "meters";
-			        
-			    	//Change Values as per unit selected in the result view.
+			        var u = "";
+			        var caseObject =null;
+			    	//select the Unit of measurement for display
 			        if (this.checked && this.value == 'meters') {
 			        	unitObject = Obj.meters;
 			        	u = 'meter';
@@ -74,12 +89,37 @@
 			        	unitObject = Obj.inches;
 			        	u = 'inches';
 			        }
-			        $("#shape_volume").text(unitObject.volume + " cubic" + u);
-					$("#shape_length").text(unitObject.case1.max_length + " "+ u );
-					$("#shape_breadth").text(unitObject.case1.max_length + " "+ u );
-					$("#shape_height").text(unitObject.case1.max_length + " "+ u );
+			        
+			        //change values s per selected image from results.
+			        if (selIMG == 'case1')
+			        	caseObject = unitObject.case1;
+			        if (selIMG == 'case2') 
+			        	caseObject = unitObject.case2;
+			        if (selIMG == 'case3')
+			        	caseObject = unitObject.case3;
+			        if (selIMG == 'case4')
+			        	caseObject = unitObject.case4;
+			        
+			     //   $("#shape_volume").text(unitObject.volume + " cubic" + u);
+				//	$("#shape_length").text(unitObject.case1.max_length + " "+ u );
+				//	$("#shape_breadth").text(unitObject.case1.max_length + " "+ u );
+				//	$("#shape_height").text(unitObject.case1.max_length + " "+ u );
+				
+				 	$("#shape_volume").text(unitObject.volume + " cubic-" + u);
+					$("#shape_length").text(caseObject.max_length + " "+ u );
+					$("#shape_breadth").text(caseObject.max_length + " "+ u );
+					$("#shape_height").text(caseObject.max_length + " "+ u );
 			    });
 			
+		
+		
+		$('#changeIt').click(function(event) {
+			$('#ajax').hide();
+			$('#input_images').show();
+			$('#input_div').show();
+			
+		});
+		
 		$('#submitIt').click(function(event) {
 			
 			if (validateInput() == true) {
@@ -118,7 +158,10 @@
 							$('[name="out_measure"][value="inches"]').prop( "checked", true );
 							}
 							
-							$("#shape_volume").text(unitObject.volume + " cubic" + selunit);
+							$('#ajax .selectedIMG').removeClass('selectedIMG');
+							$("img[name='case1']").addClass('selectedIMG');
+							selIMG = "case1";
+							$("#shape_volume").text(unitObject.volume + " cubic-" + selunit);
 							$("#shape_length").text(unitObject.case1.max_length + " "+ selunit );
 							$("#shape_breadth").text(unitObject.case1.max_length + " "+ selunit );
 							$("#shape_height").text(unitObject.case1.max_length + " "+ selunit );
@@ -189,7 +232,7 @@
 		<img src="images/cube_image.jpg"  id="img_cube" width="200" height="167" class = "img-rounded">
 		<img src="images/rectangular_pyramid.jpg" id="img_rp" width="200" height="167" class = "img-rounded">
 		<img src="images/tetrahedron.jpg"  id="img_tp" width="200" height="167" class = "img-rounded">
-</div>
+</div></center>
 
 <div id="input_div">
 <br/>
@@ -226,29 +269,33 @@
   	</div>
  </div>  
  
- 	<button type="button" id="submitIt" class="btn btn-primary">Submit</button>
+ 	<center><button type="button" id="submitIt" class="btn btn-primary">Submit</button></center>
  </form>
 </div>
  
 <div id="ajax">
-		<div id="Shape_Select">
-			<p><H3>Showing Result</H3><p>
-		</div>
 		<div class="row">
+		<div id="Shape_Select">
+			<p><center><H4>Showing Results:</H4></center></p>
+		</div></div>
+		
+		<center><div class="row">
        	  <div class="output_images">
-			<img src="images/cube_image.jpg"  id="img_cube" width="200" height="167" class = "img-rounded">
-			<img src="images/cube_image.jpg" id="img_rp" width="200" height="167" class = "img-rounded">
+			<img src="images/cube_image.jpg"  id="img_cube" width="200" height="167" class = "img-rounded" name="case1">
+			<img src="images/cube_image.jpg" id="img_rp" width="200" height="167" class = "img-rounded" name="case2">
 		</div></div>
 		<div class="row">
        	  <div class="output_images">
-			<img src="images/cube_image.jpg"  id="img_tp" width="200" height="167" class = "img-rounded">
-			<img src="images/cube_image.jpg"  id="img_tp" width="200" height="167" class = "img-rounded">
-			</div></div>
+			<img src="images/cube_image.jpg"  id="img_tp" width="200" height="167" class = "img-rounded" name="case3">
+			<img src="images/cube_image.jpg"  id="img_tp" width="200" height="167" class = "img-rounded" name="case4">
+			</div></div> 
+		<div class="row">
+				<button type="button" id="changeIt" class="btn btn-primary">Change Dimension</button>
+		</div>
+			</center>
 		
    <div id="output_div"><br/>
-	
-	
-	 <div class="form-group row">
+	<div class="form-group row">
 	    <label class="control-label col-md-1 col-sm-offset-4" for="out_measure">Unit for Measurement:</label>
 	    <div class="col-md-4">
 	    	<label class="radio-inline"><input type="radio" name="out_measure" value = "meters">Meter</label>
@@ -286,6 +333,6 @@
 	</div></div>
 
   </div>
-</center></div>
+</div>
 </body>
 </html>
