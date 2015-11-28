@@ -31,6 +31,17 @@
 	box-shadow:2px 12px 15px 2px #833;
 	}
 	
+	#errorMessage{
+		position: absolute;
+		left: 60%;
+		width:250px;
+		max-width:250px;
+   		height:20px;
+   		max-height:20px;
+   		color: red; 
+	}
+	
+	
 </style>
 <script>
 
@@ -130,11 +141,9 @@
 				selunit = $('input[name="measure"]:checked').val();
 				
 				$.post('VolCalController',{"length":length,"breadth":breadth,"height":height,"unit":selunit,"shape":selShape},function(data){		
-							alert("Ajax successful"+JSON.stringify(data));
-							
-							
+							//alert("Ajax successful"+JSON.stringify(data));
 							Obj = data;
-							
+
 							//hide Other divs and show the result div
 							$('#input_images').hide();
 							$('#input_div').hide();
@@ -178,18 +187,32 @@
 			selunit = $('input[name="measure"]:checked').val();
 			
 			if (isNaN(length) || isNaN(breadth) || isNaN(height)) {
-				alert("Please provide values")
+				//alert("Please provide values")
+				$('#errorMessage').text("Please provide values");
 				return false;
 			}
 			
-			if (length <= 0 || breadth <= 0 || height <= 0 || length <= breadth || length <= height) {
+			if (length <= 0 || breadth <= 0 || height <= 0) {
 				
-				alert("There is some problem with Input\
-						\n1. One of your dimension is Zero\
-						\n2. Length of wood cannot be less than its Breadth or Height\
-						\nPlease re enter correct values.");
+				//alert("There is some problem with Input\
+				//		\n1. One of your dimension is Zero\
+				//		\nPlease re enter correct values.");
+				$('#errorMessage').text("One of your dimension is Zero");
+				
 				return false;
-			}		
+			}
+			if (length <= breadth || length <= height) {
+				
+				//alert("There is some problem with Input\
+				//		\n1. Length of wood cannot be less than its Breadth or Height\
+				//		\nPlease re enter correct values.");
+				
+				$('#errorMessage').text("Length of wood cannot be less than its Breadth or Height");
+				
+				return false;
+				
+			}
+			
 			if (selShape == 'Cube') {
 				var a = ( length + 8 * breadth + 8 * height ) / 12;				
 				if(a <= 0 || (a - 2 * breadth <= 0) || (a - 2 * height <= 0)) {
@@ -247,7 +270,9 @@
     	<label class="radio-inline"><input type="radio" name="measure" value = "inches">Inches</label>
   	</div>
  </div>
- 
+ <div class="form-group row" id="errorMessage">
+    
+ </div>
  <div class="form-group row">
     <label class="control-label col-md-1 col-sm-offset-3" for="length">Length:</label>
     <div class="col-md-3">
@@ -258,14 +283,14 @@
  <div class="form-group row">
    <label class="control-label col-md-1 col-sm-offset-3" for="breadth">Breadth:</label>
    <div class="col-md-3">
-   		<input type="text" id="breadth" class="form-control" placeholder="Enter Breadth of Wood"/>
+   		<input type="text" id="breadth" class="form-control" placeholder="Enter Breadth of Wood">
    </div>
  </div>
  
  <div class="form-group row">
     <label class="control-label col-md-1 col-sm-offset-3" for="height">Height:</label>
  	<div class="col-md-3">
- 		<input type="text" id="height" class="form-control" placeholder="Enter Height of Wood"/>
+ 		<input type="text" id="height" class="form-control" placeholder="Enter Height of Wood">
   	</div>
  </div>  
  
