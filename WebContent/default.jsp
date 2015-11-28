@@ -56,7 +56,9 @@
 		$('input:radio[name="out_measure"]').change(
 			    function(){
 			        var u = "meters";
-			    	if (this.checked && this.value == 'meters') {
+			        
+			    	//Change Values as per unit selected in the result view.
+			        if (this.checked && this.value == 'meters') {
 			        	unitObject = Obj.meters;
 			        	u = 'meter';
 					}
@@ -89,11 +91,16 @@
 				
 				$.post('VolCalController',{"length":length,"breadth":breadth,"height":height,"unit":selunit,"shape":selShape},function(data){		
 							alert("Ajax successful"+JSON.stringify(data));
+							
+							
 							Obj = data;
+							
+							//hide Other divs and show the result div
 							$('#input_images').hide();
 							$('#input_div').hide();
 							$('#ajax').show();
 							
+							// populate values as per provided unit for measurement
 							if( selunit == "meters"){
 							unitObject = data.meters;
 							$('[name="out_measure"][value="meters"]').prop( "checked", true );
@@ -116,8 +123,6 @@
 							$("#shape_breadth").text(unitObject.case1.max_length + " "+ selunit );
 							$("#shape_height").text(unitObject.case1.max_length + " "+ selunit );
 							
-							//$("#ajax").text(JSON.stringify(data));
-				//$("#input_div").hide();
 						} );
 					}
 			})
@@ -179,7 +184,7 @@
 
 <div id="input_images" >
 	<div id="Shape_Select">
-		<p><H4> Select a Shape you would like to build</H3><p>
+		<p><H3> Select a Shape you would like to build</H3><p>
 	</div>
 		<img src="images/cube_image.jpg"  id="img_cube" width="200" height="167" class = "img-rounded">
 		<img src="images/rectangular_pyramid.jpg" id="img_rp" width="200" height="167" class = "img-rounded">
@@ -267,14 +272,14 @@
 	 </div>
 	 
 	 <div class="form-group row">
-	   <label class="control-label col-md-1 col-sm-offset-4" for="breadth">Breadth</label>
+	   <label class="control-label col-md-1 col-sm-offset-4" for="breadth">Breadth:</label>
 	   <div class="col-md-3">
 	   		<label class="control-label" id="shape_breadth"></label>
 	   </div>
 	 </div>
 	 
 	 <div class="form-group row">
-	    <label class="control-label col-md-1 col-sm-offset-4" for="height">Height</label>
+	    <label class="control-label col-md-1 col-sm-offset-4" for="height">Height:</label>
 	 	<div class="col-md-3">
 	 		<label class="control-label" id="shape_height"></label>
 	  	</div>
