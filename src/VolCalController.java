@@ -218,17 +218,21 @@ public class VolCalController extends HttpServlet {
 		
 	}
 	
-	JSONObject buildTPJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume, Double tp_height) {
+	JSONObject buildTPJSON(Double L, Double B, Double H, Double tp_side, Double tp_volume, Double tp_height) {
 		
-		JSONObject cube_cases = new JSONObject();
-		cube_cases.put("max_length", cube_side);
-		cube_cases.put("length",cube_side);
-		cube_cases.put("breadth",B);
-		cube_cases.put("height",H);
-		cube_cases.put("volume",cube_volume);
-		cube_cases.put("pyramid_height", tp_height);
+		JSONObject tp_cases = new JSONObject();
+		JSONObject tp_info = new JSONObject();
 		
-		return cube_cases;
+		
+		tp_info.put("max_length", tp_side);
+		tp_info.put("length", tp_side);
+		tp_info.put("breadth", B);
+		tp_info.put("height", H);
+		tp_cases.put("case1", tp_info);
+		tp_cases.put("volume",tp_volume);
+		tp_cases.put("pyramid_height", tp_height);
+		
+		return tp_cases;
 		
 	}
 	
