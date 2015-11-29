@@ -217,15 +217,19 @@
 			
 			if(unitObject.case1 != null){
 				$('img[name="case1"]').show();
+				$('img[name="case1"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case1">');
 			}
 			if(unitObject.case2 != null){
 				$('img[name="case2"]').show();
+				$('img[name="case2"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case2">');
 			}
 			if(unitObject.case3 != null){
 				$('img[name="case3"]').show();
+				$('img[name="case3"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case3">');
 			}
 			if(unitObject.case4 != null){
 				$('img[name="case4"]').show();
+				$('img[name="case4"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case4">');
 			}
 		}
 		
@@ -302,9 +306,9 @@
 	<div id="Shape_Select">
 		<p><H3> Select a Shape you would like to build</H3><p>
 	</div>
-		<img src="images/cube_image.jpg"  id="img_cube" width="200" height="167" class = "img-rounded">
-		<img src="images/rectangular_pyramid.jpg" id="img_rp" width="200" height="167" class = "img-rounded">
-		<img src="images/tetrahedron.jpg"  id="img_tp" width="200" height="167" class = "img-rounded">
+		<img src="images/Cube.jpg"  id="img_cube" width="200" height="167" class = "img-rounded">
+		<img src="images/Rectangular Pyramid.jpg" id="img_rp" width="200" height="167" class = "img-rounded">
+		<img src="images/Triangular Pyramid.jpg"  id="img_tp" width="200" height="167" class = "img-rounded">
 </div></center>
 
 <div id="input_div">
@@ -357,16 +361,16 @@
 		<center>
 		<div class="row">
        	  	<div class="output_images">
-			<img src="images/cube_image.jpg" width="200" height="167" class = "img-rounded" name="case1">
-			<img src="images/cube_image.jpg" width="200" height="167" class = "img-rounded" name="case2">
+			<img src= "images/Cube.jpg" width="200" height="167" class = "img-rounded" name="case1">
+			<img src= "images/Cube.jpg" width="200" height="167" class = "img-rounded" name="case2">
 			<!-- Dynamic load images as per ajax response -->
 			</div>
 		</div>
 		<div class="row">
        	  <div class="output_images">
 		  <!-- Dynamic load images as per ajax response -->
-		  <img src="images/cube_image.jpg" width="200" height="167" class = "img-rounded" name="case3">
-		  <img src="images/cube_image.jpg" width="200" height="167" class = "img-rounded" name="case4">
+		  <img src= "images/Cube.jpg" width="200" height="167" class = "img-rounded" name="case3">
+		  <img src= "images/Cube.jpg" width="200" height="167" class = "img-rounded" name="case4">
 		  </div>
 		</div> 
 		
