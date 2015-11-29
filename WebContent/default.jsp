@@ -70,7 +70,7 @@
 			$("#input_div").show();		
 		});	
 		
-		$('img').click(function(){
+		$(document).on('click','img',function(){
 			   $('.selectedIMG').removeClass('selectedIMG'); // removes the previous selected class
 			
 			   // adds the class to the clicked image
