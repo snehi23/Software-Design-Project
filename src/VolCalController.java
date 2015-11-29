@@ -82,17 +82,19 @@ public class VolCalController extends HttpServlet {
 	
 	JSONObject processRP(Double L, Double B, Double H) {
 		
-		Double cube_side = roundValue(L / 8);
-		Double cube_volume = roundValue((cube_side * cube_side * cube_side) / (3 * Math.sqrt(2)) );
-		return buildRPJSON(L,B,H,cube_side,cube_volume);			
+		Double rp_side = roundValue(L / 8);
+		Double rp_volume = roundValue((rp_side * rp_side * rp_side) / (3 * Math.sqrt(2)) );
+		Double rp_height = roundValue(rp_side / Math.sqrt(2));
+		return buildRPJSON(L,B,H,rp_side,rp_volume,rp_height);			
 		
 	}
 	
 	JSONObject processTP(Double L, Double B, Double H) {
 		
-		Double cube_side = roundValue(L / 6);
-		Double cube_volume = roundValue((cube_side * cube_side * cube_side) / (6 * Math.sqrt(2)) );
-		return buildTPJSON(L,B,H,cube_side,cube_volume);			
+		Double tp_side = roundValue(L / 6);
+		Double tp_volume = roundValue((tp_side * tp_side * tp_side) / (6 * Math.sqrt(2)) );
+		Double tp_height = roundValue((Math.sqrt(2) * tp_side) / Math.sqrt(3));
+		return buildTPJSON(L,B,H,tp_side,tp_volume,tp_height);			
 		
 	}
 	
@@ -156,7 +158,7 @@ public class VolCalController extends HttpServlet {
 		
 	}
 	
-	JSONObject buildRPJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume) {
+	JSONObject buildRPJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume, Double rp_height) {
 		
 		JSONObject cube_cases = new JSONObject();
 		
@@ -210,12 +212,13 @@ public class VolCalController extends HttpServlet {
 					
 		cube_cases.put("case4",cube_info);
 		cube_cases.put("volume",cube_volume);
+		cube_cases.put("pyramid_height", rp_height);
 		
 		return cube_cases;
 		
 	}
 	
-	JSONObject buildTPJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume) {
+	JSONObject buildTPJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume, Double tp_height) {
 		
 		JSONObject cube_cases = new JSONObject();
 		cube_cases.put("max_length", cube_side);
@@ -223,6 +226,7 @@ public class VolCalController extends HttpServlet {
 		cube_cases.put("breadth",B);
 		cube_cases.put("height",H);
 		cube_cases.put("volume",cube_volume);
+		cube_cases.put("pyramid_height", tp_height);
 		
 		return cube_cases;
 		
