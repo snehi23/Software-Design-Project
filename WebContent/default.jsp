@@ -79,6 +79,7 @@
 			   selIMG = $(this).prop('name');
 			});
 		
+		
 		$('input:radio[name="out_measure"]').change(
 			    function(){
 			        var u = "";
@@ -117,9 +118,15 @@
 				//	$("#shape_height").text(unitObject.case1.max_length + " "+ u );
 				
 				 	$("#shape_volume").text(unitObject.volume + " cubic-" + u);
-					$("#shape_length").text(caseObject.max_length + " "+ u );
-					$("#shape_breadth").text(caseObject.max_length + " "+ u );
-					$("#shape_height").text(caseObject.max_length + " "+ u );
+					if(selShape =='Cube'){
+				 		$("#shape_length").text(caseObject.max_length + " "+ u );
+						$("#shape_breadth").text(caseObject.max_length + " "+ u );
+						$("#shape_height").text(caseObject.max_length + " "+ u );
+					}else{
+						$("#pyramid_base").text(unitObject.case1.max_length + " "+ u );
+						$("#pyramid_slant").text(unitObject.case1.max_length + " "+ u );
+						$("#pyramid_height").text(unitObject.pyramid_height + " "+ u );
+					}
 			    });
 			
 		
@@ -141,13 +148,16 @@
 				selunit = $('input[name="measure"]:checked').val();
 				
 				$.post('VolCalController',{"length":length,"breadth":breadth,"height":height,"unit":selunit,"shape":selShape},function(data){		
-							//alert("Ajax successful"+JSON.stringify(data));
+							alert("Ajax successful"+JSON.stringify(data));
 							Obj = data;
 
 							//hide Other divs and show the result div
 							$('#input_images').hide();
 							$('#input_div').hide();
 							$('#ajax').show();
+							
+							//show options
+							showOption();
 							
 							// populate values as per provided unit for measurement
 							if( selunit == "meters"){
@@ -187,11 +197,37 @@
 								$("#pyramid_height").text(unitObject.pyramid_height + " "+ selunit );
 							}
 							
-							
-							
 						} );
 					}
 			})
+		
+		function showOption(){
+			var unitObject = null;
+			
+			if( selunit == "meters")
+				unitObject = Obj.meters;
+			if( selunit == "centimeters")
+					unitObject = Obj.centimeters;
+			if( selunit == "yards")
+					unitObject = Obj.yards;
+			if( selunit == "inches")
+					unitObject = Obj.inches;
+			
+			$(".output_images img").hide();
+			
+			if(unitObject.case1 != null){
+				$('img[name="case1"]').show();
+			}
+			if(unitObject.case2 != null){
+				$('img[name="case2"]').show();
+			}
+			if(unitObject.case3 != null){
+				$('img[name="case3"]').show();
+			}
+			if(unitObject.case4 != null){
+				$('img[name="case4"]').show();
+			}
+		}
 		
 		function validateInput() {
 			
@@ -318,20 +354,26 @@
 			<p><center><H4>Showing Results:</H4></center></p>
 		</div></div>
 		
-		<center><div class="row">
-       	  <div class="output_images">
-			<img src="images/cube_image.jpg"  id="img_cube" width="200" height="167" class = "img-rounded" name="case1">
-			<img src="images/cube_image.jpg" id="img_rp" width="200" height="167" class = "img-rounded" name="case2">
-		</div></div>
+		<center>
+		<div class="row">
+       	  	<div class="output_images">
+			<img src="images/cube_image.jpg" width="200" height="167" class = "img-rounded" name="case1">
+			<img src="images/cube_image.jpg" width="200" height="167" class = "img-rounded" name="case2">
+			<!-- Dynamic load images as per ajax response -->
+			</div>
+		</div>
 		<div class="row">
        	  <div class="output_images">
-			<img src="images/cube_image.jpg"  id="img_tp" width="200" height="167" class = "img-rounded" name="case3">
-			<img src="images/cube_image.jpg"  id="img_tp" width="200" height="167" class = "img-rounded" name="case4">
-			</div></div> 
+		  <!-- Dynamic load images as per ajax response -->
+		  <img src="images/cube_image.jpg" width="200" height="167" class = "img-rounded" name="case3">
+		  <img src="images/cube_image.jpg" width="200" height="167" class = "img-rounded" name="case4">
+		  </div>
+		</div> 
+		
 		<div class="row">
 				<button type="button" id="changeIt" class="btn btn-primary">Change Dimension</button>
 		</div>
-			</center>
+		</center>
 		
    <div id="output_div"><br/>
 	<div class="form-group row">
