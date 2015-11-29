@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -42,8 +43,13 @@ public class VolCalController extends HttpServlet {
 			Map<String, Double> perUnitValues = new HashMap<String, Double>();
 			perUnitValues = perUnitValuesCalculator(Diamensions, unit);	
 			
-			unit_wise_cases = allUnitsPerShapeCalculator(length_in_integer,breadth_in_integer,
-					height_in_integer,perUnitValues,unit,shape);
+			try {
+				unit_wise_cases = allUnitsPerShapeCalculator(length_in_integer,breadth_in_integer,
+						height_in_integer,perUnitValues,unit,shape);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 						
 			response.setContentType("application/json");
 			response.getWriter().write(unit_wise_cases.toString());
@@ -72,7 +78,7 @@ public class VolCalController extends HttpServlet {
 		return (double) Math.round( a * 100.0) / 100.0;	
 	}
 	
-	JSONObject processCube(Double L, Double B, Double H) {
+	JSONObject processCube(Double L, Double B, Double H) throws JSONException {
 		
 		Double cube_side = roundValue(( L + 8 * H + 8 * B ) / 12);
 		Double cube_volume = roundValue((cube_side * cube_side * cube_side));
@@ -80,7 +86,7 @@ public class VolCalController extends HttpServlet {
 		
 	}
 	
-	JSONObject processRP(Double L, Double B, Double H) {
+	JSONObject processRP(Double L, Double B, Double H) throws JSONException {
 		
 		Double rp_side = roundValue(L / 8);
 		Double rp_volume = roundValue((rp_side * rp_side * rp_side) / (3 * Math.sqrt(2)) );
@@ -89,7 +95,7 @@ public class VolCalController extends HttpServlet {
 		
 	}
 	
-	JSONObject processTP(Double L, Double B, Double H) {
+	JSONObject processTP(Double L, Double B, Double H) throws JSONException {
 		
 		Double tp_side = roundValue(L / 6);
 		Double tp_volume = roundValue((tp_side * tp_side * tp_side) / (6 * Math.sqrt(2)) );
@@ -98,7 +104,7 @@ public class VolCalController extends HttpServlet {
 		
 	}
 	
-	JSONObject buildCubeJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume) {
+	JSONObject buildCubeJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume) throws JSONException {
 		
 		JSONObject cube_cases = new JSONObject();
 		
@@ -158,7 +164,7 @@ public class VolCalController extends HttpServlet {
 		
 	}
 	
-	JSONObject buildRPJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume, Double rp_height) {
+	JSONObject buildRPJSON(Double L, Double B, Double H, Double cube_side, Double cube_volume, Double rp_height) throws JSONException {
 		
 		JSONObject cube_cases = new JSONObject();
 		
@@ -218,7 +224,7 @@ public class VolCalController extends HttpServlet {
 		
 	}
 	
-	JSONObject buildTPJSON(Double L, Double B, Double H, Double tp_side, Double tp_volume, Double tp_height) {
+	JSONObject buildTPJSON(Double L, Double B, Double H, Double tp_side, Double tp_volume, Double tp_height) throws JSONException {
 		
 		JSONObject tp_cases = new JSONObject();
 		JSONObject tp_info = new JSONObject();
@@ -268,7 +274,7 @@ public class VolCalController extends HttpServlet {
 	}
 	
 	JSONObject allUnitsPerShapeCalculator(Double length_in_integer,Double breadth_in_integer,
-			Double height_in_integer,Map<String, Double> perUnitValues,String unit,String shape) {
+			Double height_in_integer,Map<String, Double> perUnitValues,String unit,String shape) throws JSONException {
 		
 		JSONObject cases = new JSONObject();
 		JSONObject unit_wise_cases = new JSONObject();
