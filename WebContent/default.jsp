@@ -170,10 +170,24 @@
 							$('#ajax .selectedIMG').removeClass('selectedIMG');
 							$("img[name='case1']").addClass('selectedIMG');
 							selIMG = "case1";
+							
 							$("#shape_volume").text(unitObject.volume + " cubic-" + selunit);
-							$("#shape_length").text(unitObject.case1.max_length + " "+ selunit );
-							$("#shape_breadth").text(unitObject.case1.max_length + " "+ selunit );
-							$("#shape_height").text(unitObject.case1.max_length + " "+ selunit );
+							if(selShape == "Cube"){
+								$('.cube').show();
+								$('.pyramid').hide();
+								$("#shape_length").text(unitObject.case1.max_length + " "+ selunit );
+								$("#shape_breadth").text(unitObject.case1.max_length + " "+ selunit );
+								$("#shape_height").text(unitObject.case1.max_length + " "+ selunit );
+							}
+							else{
+								$('.cube').hide();
+								$('.pyramid').show();
+								$("#pyramid_base").text(unitObject.case1.max_length + " "+ selunit );
+								$("#pyramid_slant").text(unitObject.case1.max_length + " "+ selunit );
+								$("#pyramid_height").text(unitObject.pyramid_height + " "+ selunit );
+							}
+							
+							
 							
 						} );
 					}
@@ -336,26 +350,49 @@
 	 		<label class="control-label" id="shape_volume"></label>
 	  	</div>
 	 </div> 
-	 <div class="form-group row">
-	    <label class="control-label col-md-1 col-sm-offset-4" for="length">Length:</label>
+	 <div class="form-group row cube">
+	    <label class="control-label col-md-1 col-sm-offset-4" for="shape_length">Length:</label>
 	    <div class="col-md-3">
 	    	<label class="control-label" id="shape_length"></label>
 	  	</div>
 	 </div>
 	 
-	 <div class="form-group row">
-	   <label class="control-label col-md-1 col-sm-offset-4" for="breadth">Breadth:</label>
+	 <div class="form-group row cube">
+	   <label class="control-label col-md-1 col-sm-offset-4" for="shape_breadth">Breadth:</label>
 	   <div class="col-md-3">
 	   		<label class="control-label" id="shape_breadth"></label>
 	   </div>
 	 </div>
 	 
-	 <div class="form-group row">
-	    <label class="control-label col-md-1 col-sm-offset-4" for="height">Height:</label>
+	 <div class="form-group row cube">
+	   <label class="control-label col-md-1 col-sm-offset-4" for="shape_height">Height:</label>
+	   <div class="col-md-3">
+	   		<label class="control-label" id="shape_height"></label>
+	   </div>
+	 </div>
+	 
+	 <div class="form-group row pyramid">
+	    <label class="control-label col-md-1 col-sm-offset-4" for="pyramid_base">Base:</label>
 	 	<div class="col-md-3">
-	 		<label class="control-label" id="shape_height"></label>
+	 		<label class="control-label" id="pyramid_base"></label>
 	  	</div>
-	</div></div>
+	</div>
+	
+	 <div class="form-group row pyramid">
+	   <label class="control-label col-md-1 col-sm-offset-4" for="pyramid_slant">Slant ht:</label>
+	   <div class="col-md-3">
+	   		<label class="control-label" id="pyramid_slant"></label>
+	   </div>
+	 </div>
+	 
+	 <div class="form-group row pyramid">
+	   <label class="control-label col-md-1 col-sm-offset-4" for="breadth">Height:</label>
+	   <div class="col-md-3">
+	   		<label class="control-label" id="pyramid_height"></label>
+	   </div>
+	 </div>
+	 
+	 </div>
 
   </div>
 </div>
