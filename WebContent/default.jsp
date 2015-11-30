@@ -13,6 +13,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="http://code.jquery.com/jquery-latest.js"></script>  
+<script src="show.js"></script>
 <title>Home</title>
 </head>
 <body>
@@ -39,6 +40,122 @@
    		height:20px;
    		max-height:20px;
    		color: red; 
+	}
+	
+	#case1 {
+		border-radius: 25px;
+		border:1px solid black;
+	    width: 500px;
+    	height: 300px;
+    	float: left;
+	}
+	
+	#case1 div {
+	    width: 200px;
+    	float: left;
+	}
+	
+	#case2 {
+		border-radius: 25px;
+		border:1px solid black;
+	    width: 500px;
+    	height: 300px;
+    	float: left;
+	}
+	
+	#case2 div {
+	    width: 200px;
+    	float: left;
+	}
+	
+	#case3 {
+	 	border-radius: 25px;
+		border:1px solid black;
+	    width: 500px;
+    	height: 300px;
+    	float: left;
+	}
+	
+	#case3 div {
+	    width: 200px;
+    	float: left;
+	}
+	
+	#case4 {
+		border-radius: 25px;
+		border:1px solid black;
+	    width: 500px;
+    	height: 300px;
+    	float: left;
+	}
+	
+	#case4 div {
+	    width: 200px;
+    	float: left;
+	}
+	
+	#case5 {
+		border-radius: 25px;
+		border:1px solid black;
+	    width: 500px;
+    	height: 300px;
+    	float: left;
+	}
+	
+	#case5 div {
+	    width: 200px;
+    	float: left;
+	}
+	
+	#case6 {
+		border-radius: 25px;
+		border:1px solid black;
+	    width: 500px;
+    	height: 300px;
+    	float: left;
+	}
+	
+	#case6 div {
+	    width: 200px;
+    	float: left;
+	}
+	
+	#case7 {
+	 	border-radius: 25px;
+		border:1px solid black;
+	    width: 500px;
+    	height: 300px;
+    	float: left;
+	}
+	
+	#case7 div {
+	    width: 200px;
+    	float: left;
+	}
+	
+	#case8 {
+		border-radius: 25px;
+		border:1px solid black;
+	    width: 500px;
+    	height: 300px;
+    	float: left;
+	}
+	
+	#case8 div {
+	    width: 200px;
+    	float: left;
+	}
+	
+	#case9 {
+		border-radius: 25px;
+		border:1px solid black;
+	    width: 402px;
+    	height: 256px;
+	}
+	
+	#case9 div {
+	    width: 200px;
+    	float: left;
 	}
 	
 	
@@ -198,8 +315,110 @@
 							}
 							
 						} );
+				
+					if(selShape == "Cube") {
+						$('#case5').hide();
+						$('#case6').hide();
+						$('#case7').hide();
+						$('#case8').hide();
+						$('#case9').hide();
+						
+						$('#case1').show();
+						$('#case2').show();
+						$('#case3').show();
+						$('#case4').show();
+						case1();
+						case2();
+						case3();
+						case4();
 					}
+					
+					if(selShape == "Rectangular Pyramid") {
+						$('#case1').hide();
+						$('#case2').hide();
+						$('#case3').hide();
+						$('#case4').hide();
+						$('#case9').hide();
+						
+						$('#case5').show();
+						$('#case6').show();
+						$('#case7').show();
+						$('#case8').show();
+						case5();
+						case6();
+						case7();
+						case8();
+					}
+					
+					if(selShape == "Triangular Pyramid") {
+						$('#case1').hide();
+						$('#case2').hide();
+						$('#case3').hide();
+						$('#case4').hide();
+						$('#case5').hide();
+						$('#case6').hide();
+						$('#case7').hide();
+						$('#case8').hide();
+						
+						$('#case9').show();
+						case9();
+					}
+					
+				}
 			})
+		
+		function case1() {
+			case1_top();
+			case1_front();
+			case1_side();
+		}
+		
+		function case2() {
+			case2_top();
+			case2_front();
+			case2_side();
+		}
+		
+		function case3() {
+			case3_top();
+			case3_front();
+			case3_side();
+		}
+		
+		function case4() {
+			case4_top();
+			case4_front();
+			case4_side();
+		}
+
+		function case5() {
+			case5_top();
+			case5_front();
+			case5_side();		
+		}
+		
+		function case6() {
+			case6_top();
+			case6_front();
+			case6_side();		
+		}
+		
+		function case7() {
+			case7_top();
+			case7_front();
+			case7_side();
+		}
+		
+		function case8() {
+			case8_top();
+			case8_front();
+			case8_side();
+		}
+		
+		function case9() {
+			case9_top();
+			case9_front();
+		}
 		
 		function showOption(){
 			var unitObject = null;
@@ -216,20 +435,21 @@
 			$(".output_images img").hide();
 			
 			if(unitObject.case1 != null){
-				$('img[name="case1"]').show();
-				$('img[name="case1"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case1">');
+				/* $('img[name="case1"]').show();
+				$('img[name="case1"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case1">'); */
+				
 			}
 			if(unitObject.case2 != null){
-				$('img[name="case2"]').show();
-				$('img[name="case2"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case2">');
+				/* $('img[name="case2"]').show();
+				$('img[name="case2"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case2">'); */
 			}
 			if(unitObject.case3 != null){
-				$('img[name="case3"]').show();
-				$('img[name="case3"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case3">');
+				/* $('img[name="case3"]').show();
+				$('img[name="case3"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case3">'); */
 			}
 			if(unitObject.case4 != null){
-				$('img[name="case4"]').show();
-				$('img[name="case4"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case4">');
+				/* $('img[name="case4"]').show();
+				$('img[name="case4"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case4">'); */
 			}
 		}
 		
@@ -356,13 +576,117 @@
 		<div class="row">
 		<div id="Shape_Select">
 			<p><center><H4>Showing Results:</H4></center></p>
-		</div></div>
-		
+		</div></div>	
 		<center>
 		<div class="row">
        	  	<div class="output_images">
-			<img src= "images/Cube.jpg" width="200" height="167" class = "img-rounded" name="case1">
-			<img src= "images/Cube.jpg" width="200" height="167" class = "img-rounded" name="case2">
+			<!-- <img src= "images/Cube.jpg" width="200" height="167" class = "img-rounded" name="case1">
+			<img src= "images/Cube.jpg" width="200" height="167" class = "img-rounded" name="case2"> -->
+			<div id="case1">
+				<div>
+					<canvas id="case1_top" width="200" height="150"></canvas>
+				</div>		
+				<div>
+					<canvas id="case1_front" width="200" height="150"></canvas>
+				</div>
+				<div>
+					<canvas id="case1_side" width="200" height="150"></canvas>
+				</div>
+				<div><p><center><H4>Case 1</H4></center></p></div>
+			</div>
+			<div id="case2">
+				<div>
+					<canvas id="case2_top" width="200" height="150" ></canvas>
+				</div>		
+				<div>
+					<canvas id="case2_front" width="200" height="150"></canvas>
+				</div>
+				<div>
+					<canvas id="case2_side" width="200" height="150"></canvas>
+				</div>
+				<div><p><center><H4>Case 2</H4></center></p></div>
+			</div>
+			<div id="case3">
+				<div>
+					<canvas id="case3_top" width="200" height="150"></canvas>
+				</div>		
+				<div>
+					<canvas id="case3_front" width="200" height="150"></canvas>
+				</div>
+				<div>
+					<canvas id="case3_side" width="200" height="150"></canvas>
+				</div>
+				<div><p><center><H4>Case 3</H4></center></p></div>
+			</div>
+			<div id="case4">
+				<div>
+					<canvas id="case4_top" width="200" height="150"></canvas>
+				</div>		
+				<div>
+					<canvas id="case4_front" width="200" height="150"></canvas>
+				</div>
+				<div>
+					<canvas id="case4_side" width="200" height="150"></canvas>
+				</div>
+				<div><p><center><H4>Case 4</H4></center></p></div>
+			</div>
+			<div id="case5">
+				<div>
+					<canvas id="case5_top" width="200" height="150"></canvas>
+				</div>		
+				<div>
+					<canvas id="case5_front" width="200" height="150"></canvas>
+				</div>
+				<div>
+					<canvas id="case5_side" width="200" height="150"></canvas>
+				</div>
+				<div><p><center><H4>Case 1</H4></center></p></div>
+			</div>
+			<div id="case6">
+				<div>
+					<canvas id="case6_top" width="200" height="150" ></canvas>
+				</div>		
+				<div>
+					<canvas id="case6_front" width="200" height="150"></canvas>
+				</div>
+				<div>
+					<canvas id="case6_side" width="200" height="150"></canvas>
+				</div>
+				<div><p><center><H4>Case 2</H4></center></p></div>
+			</div>
+			<div id="case7">
+				<div>
+					<canvas id="case7_top" width="200" height="150"></canvas>
+				</div>		
+				<div>
+					<canvas id="case7_front" width="200" height="150"></canvas>
+				</div>
+				<div>
+					<canvas id="case7_side" width="200" height="150"></canvas>
+				</div>
+				<div><p><center><H4>Case 3</H4></center></p></div>
+			</div>
+			<div id="case8">
+				<div>
+					<canvas id="case8_top" width="200" height="150"></canvas>
+				</div>		
+				<div>
+					<canvas id="case8_front" width="200" height="150"></canvas>
+				</div>
+				<div>
+					<canvas id="case8_side" width="200" height="150"></canvas>
+				</div>
+				<div><p><center><H4>Case 4</H4></center></p></div>
+			</div>
+			<div id="case9">
+				<div>
+					<canvas id="case9_top" width="200" height="150"></canvas>
+				</div>		
+				<div>
+					<canvas id="case9_front" width="200" height="150"></canvas>
+				</div>
+			</div>
+			<br>
 			<!-- Dynamic load images as per ajax response -->
 			</div>
 		</div>
