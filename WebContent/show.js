@@ -36,6 +36,8 @@
 			
 			var c = document.getElementById("case1_front");
 			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
 			ctx.beginPath();
 			ctx.rect(20, 20, 100, 100);
 			ctx.rect(40, 40, 60, 60);
@@ -86,6 +88,8 @@
 			
 			var c = document.getElementById("case1_side");
 			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
 			ctx.beginPath();
 			ctx.rect(20, 20, 100, 100);
 			ctx.rect(40, 40, 60, 60);
@@ -195,6 +199,8 @@
 			
 			var c = document.getElementById("case2_front");
 			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
 			ctx.beginPath();
 			ctx.rect(20, 20, 100, 100);
 			ctx.rect(40, 40, 60, 60);
@@ -245,6 +251,8 @@
 			
 			var c = document.getElementById("case2_side");
 			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
 			ctx.beginPath();
 			ctx.rect(20, 20, 100, 100);
 			ctx.rect(40, 40, 60, 60);
@@ -349,6 +357,8 @@
 			
 			var c = document.getElementById("case3_front");
 			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
 			ctx.beginPath();
 			ctx.rect(20, 20, 100, 100);
 			ctx.rect(40, 40, 60, 60);
@@ -399,6 +409,8 @@
 			
 			var c = document.getElementById("case3_side");
 			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
 			ctx.beginPath();
 			ctx.rect(20, 20, 100, 100);
 			ctx.rect(40, 40, 60, 60);
@@ -508,6 +520,8 @@
 			
 			var c = document.getElementById("case4_front");
 			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
 			ctx.beginPath();
 			ctx.rect(20, 20, 100, 100);
 			ctx.rect(40, 40, 60, 60);
@@ -558,6 +572,8 @@
 			
 			var c = document.getElementById("case4_side");
 			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
 			ctx.beginPath();
 			ctx.rect(20, 20, 100, 100);
 			ctx.rect(40, 40, 60, 60);
@@ -628,6 +644,8 @@
 			
 			var c = document.getElementById("case9_top");
 			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
 			ctx.beginPath();
 			ctx.moveTo(75,0);
 			ctx.lineTo(150,100);
@@ -664,6 +682,8 @@
 			
 			var c = document.getElementById("case9_front");
 			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
 			ctx.beginPath();
 			ctx.moveTo(75,0);
 			ctx.lineTo(150,100);
