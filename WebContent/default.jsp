@@ -158,6 +158,10 @@
     	float: left;
 	}
 	
+	#changeItDiv {
+		padding-top: 10px;
+	}
+	
 	
 </style>
 <script>
@@ -229,11 +233,6 @@
 			        if (selIMG == 'case4')
 			        	caseObject = unitObject.case4;
 			        
-			     //   $("#shape_volume").text(unitObject.volume + " cubic" + u);
-				//	$("#shape_length").text(unitObject.case1.max_length + " "+ u );
-				//	$("#shape_breadth").text(unitObject.case1.max_length + " "+ u );
-				//	$("#shape_height").text(unitObject.case1.max_length + " "+ u );
-				
 				 	$("#shape_volume").text(unitObject.volume + " cubic-" + u);
 					if(selShape =='Cube'){
 				 		$("#shape_length").text(caseObject.max_length + " "+ u );
@@ -468,18 +467,11 @@
 			
 			if (length <= 0 || breadth <= 0 || height <= 0) {
 				
-				//alert("There is some problem with Input\
-				//		\n1. One of your dimension is Zero\
-				//		\nPlease re enter correct values.");
 				$('#errorMessage').text("One of your dimension is Zero");
 				
 				return false;
 			}
 			if (length <= breadth || length <= height) {
-				
-				//alert("There is some problem with Input\
-				//		\n1. Length of wood cannot be less than its Breadth or Height\
-				//		\nPlease re enter correct values.");
 				
 				$('#errorMessage').text("Length of wood cannot be less than its Breadth or Height");
 				
@@ -698,7 +690,7 @@
 		  </div>
 		</div> 
 		
-		<div class="row">
+		<div id="changeItDiv" class="row">
 				<button type="button" id="changeIt" class="btn btn-primary">Change Dimension</button>
 		</div>
 		</center>

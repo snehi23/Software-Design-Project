@@ -4,3 +4,5 @@
 *.class
 
 build/classes/CalController.class
+
+*.class
