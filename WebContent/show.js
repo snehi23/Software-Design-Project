@@ -42,6 +42,11 @@
 			ctx.rect(20, 20, 100, 100);
 			ctx.rect(40, 40, 60, 60);
 			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,40);
+			ctx.lineTo(20,40);
+			ctx.stroke();
 
 			ctx.beginPath();
 			ctx.moveTo(40,40);
@@ -719,6 +724,334 @@
 			ctx.lineTo(150,100);
 			ctx.strokeStyle="#FF0000";
 			ctx.stroke();
+
+		}
+		
+		function case5_top() {
+			
+			var c = document.getElementById("case5_top");
+			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
+			ctx.beginPath();
+			ctx.rect(20, 20, 100, 100);
+			ctx.rect(40, 40, 60, 60);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(20,20);
+			ctx.lineTo(70,70);
+			ctx.strokeStyle="#0000FF";
+			ctx.stroke();
+			
+			ctx.strokeStyle="#000000";
+			ctx.beginPath();
+			ctx.moveTo(120,120);
+			ctx.lineTo(70,70);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(120,20);
+			ctx.lineTo(70,70);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(20,120);
+			ctx.lineTo(70,70);
+			ctx.stroke();
+			
+			
+			ctx.beginPath();
+			ctx.moveTo(100,100);
+			ctx.lineTo(100,20);
+			ctx.strokeStyle="#00FF00";
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,40);
+			ctx.lineTo(20,40);
+			ctx.strokeStyle="#FF0000";
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(100,40);
+			ctx.lineTo(100,20);
+			ctx.moveTo(40,100);
+			ctx.lineTo(40,120);
+			ctx.moveTo(100,100);
+			ctx.lineTo(120,100);
+			ctx.strokeStyle="#000000";
+			ctx.fillText("Top View",130,60);
+			ctx.stroke();
+		}
+		
+		function case5_front() {
+			
+			var c = document.getElementById("case5_front");
+			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
+			ctx.beginPath();
+			ctx.rect(20,100,100,20);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(20,100);
+			ctx.lineTo(70,30);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(120,100);
+			ctx.lineTo(70,30);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,100);
+			ctx.lineTo(70,55);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(100,100);
+			ctx.lineTo(70,55);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(70,30);
+			ctx.lineTo(70,55);
+			ctx.fillText("Front View",130,60);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,100);
+			ctx.lineTo(40,120);
+			ctx.strokeStyle="#FF0000";
+			ctx.stroke();
+			
+
+		}
+		
+		function case5_side() {
+			
+			var c = document.getElementById("case5_side");
+			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
+			ctx.beginPath();
+			ctx.rect(20,100,100,20);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(20,100);
+			ctx.lineTo(70,30);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(120,100);
+			ctx.lineTo(70,30);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,100);
+			ctx.lineTo(70,55);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(100,100);
+			ctx.lineTo(70,55);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(70,30);
+			ctx.lineTo(70,55);
+			ctx.fillText("Side View",130,60);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,100);
+			ctx.lineTo(40,120);
+			ctx.strokeStyle="#FF0000";
+			ctx.stroke();
+			
+
+		}
+		
+		function case6_top() {
+			
+			var c = document.getElementById("case6_top");
+			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
+			ctx.beginPath();
+			ctx.rect(20, 20, 100, 100);
+			ctx.rect(40, 40, 60, 60);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(20,20);
+			ctx.lineTo(70,70);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(120,120);
+			ctx.lineTo(70,70);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(120,20);
+			ctx.lineTo(70,70);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(20,120);
+			ctx.lineTo(70,70);
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(40,40);
+			ctx.lineTo(40,20);
+			ctx.strokeStyle="#FF0000";
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(100,40);
+			ctx.lineTo(100,100);
+			ctx.strokeStyle="#00FF00";
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(120,20);
+			ctx.lineTo(120,120);
+			ctx.strokeStyle="#0000FF";
+			ctx.stroke();
+
+			ctx.beginPath();
+			ctx.moveTo(100,40);
+			ctx.lineTo(100,20);
+			ctx.moveTo(40,100);
+			ctx.lineTo(40,120);
+			ctx.moveTo(100,100);
+			ctx.lineTo(100,120);
+			ctx.strokeStyle="#000000";
+			ctx.fillText("Top View",130,60);
+			ctx.stroke();
+			
+			
+			ctx.beginPath();
+			ctx.moveTo(100,100);
+			ctx.lineTo(100,20);
+			ctx.strokeStyle="#00FF00";
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,40);
+			ctx.lineTo(20,40);
+			ctx.strokeStyle="#FF0000";
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(100,40);
+			ctx.lineTo(100,20);
+			ctx.moveTo(40,100);
+			ctx.lineTo(40,120);
+			ctx.moveTo(100,100);
+			ctx.lineTo(120,100);
+			ctx.strokeStyle="#000000";
+			ctx.fillText("Top View",130,60);
+			ctx.stroke();
+		}
+		
+		function case6_front() {
+			
+			var c = document.getElementById("case6_front");
+			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
+			ctx.beginPath();
+			ctx.rect(20,100,100,20);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(20,100);
+			ctx.lineTo(70,30);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(120,100);
+			ctx.lineTo(70,30);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,100);
+			ctx.lineTo(70,55);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(100,100);
+			ctx.lineTo(70,55);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(70,30);
+			ctx.lineTo(70,55);
+			ctx.fillText("Front View",130,60);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,100);
+			ctx.lineTo(40,120);
+			ctx.strokeStyle="#FF0000";
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(100,100);
+			ctx.lineTo(100,120);
+			ctx.stroke();
+			
+
+		}
+		
+		function case6_side() {
+			
+			var c = document.getElementById("case6_side");
+			var ctx = c.getContext("2d");
+			
+			ctx.strokeStyle="#000000";
+			ctx.beginPath();
+			ctx.rect(20,100,100,20);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(20,100);
+			ctx.lineTo(70,30);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(120,100);
+			ctx.lineTo(70,30);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,100);
+			ctx.lineTo(70,55);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(100,100);
+			ctx.lineTo(70,55);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(70,30);
+			ctx.lineTo(70,55);
+			ctx.fillText("Side View",130,60);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.moveTo(40,100);
+			ctx.lineTo(40,120);
+			ctx.strokeStyle="#FF0000";
+			ctx.stroke();
+			
 
 		}
 		

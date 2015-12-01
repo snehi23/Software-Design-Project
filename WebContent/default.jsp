@@ -264,7 +264,7 @@
 				selunit = $('input[name="measure"]:checked').val();
 				
 				$.post('VolCalController',{"length":length,"breadth":breadth,"height":height,"unit":selunit,"shape":selShape},function(data){		
-							alert("Ajax successful"+JSON.stringify(data));
+							//alert("Ajax successful"+JSON.stringify(data));
 							Obj = data;
 
 							//hide Other divs and show the result div
@@ -574,109 +574,109 @@
        	  	<div class="output_images">
 			<!-- <img src= "images/Cube.jpg" width="200" height="167" class = "img-rounded" name="case1">
 			<img src= "images/Cube.jpg" width="200" height="167" class = "img-rounded" name="case2"> -->
-			<div id="case1">
-				<div>
-					<canvas id="case1_top" width="200" height="150"></canvas>
-				</div>		
+			<div id="case1">	
 				<div>
 					<canvas id="case1_front" width="200" height="150"></canvas>
 				</div>
 				<div>
 					<canvas id="case1_side" width="200" height="150"></canvas>
 				</div>
+				<div>
+					<canvas id="case1_top" width="200" height="150"></canvas>
+				</div>	
 				<div><p><center><H4>Case 1</H4></center></p></div>
 			</div>
-			<div id="case2">
-				<div>
-					<canvas id="case2_top" width="200" height="150" ></canvas>
-				</div>		
+			<div id="case2">	
 				<div>
 					<canvas id="case2_front" width="200" height="150"></canvas>
 				</div>
 				<div>
 					<canvas id="case2_side" width="200" height="150"></canvas>
 				</div>
+				<div>
+					<canvas id="case2_top" width="200" height="150" ></canvas>
+				</div>	
 				<div><p><center><H4>Case 2</H4></center></p></div>
 			</div>
-			<div id="case3">
-				<div>
-					<canvas id="case3_top" width="200" height="150"></canvas>
-				</div>		
+			<div id="case3">	
 				<div>
 					<canvas id="case3_front" width="200" height="150"></canvas>
 				</div>
 				<div>
 					<canvas id="case3_side" width="200" height="150"></canvas>
 				</div>
+				<div>
+					<canvas id="case3_top" width="200" height="150"></canvas>
+				</div>	
 				<div><p><center><H4>Case 3</H4></center></p></div>
 			</div>
-			<div id="case4">
-				<div>
-					<canvas id="case4_top" width="200" height="150"></canvas>
-				</div>		
+			<div id="case4">	
 				<div>
 					<canvas id="case4_front" width="200" height="150"></canvas>
 				</div>
 				<div>
 					<canvas id="case4_side" width="200" height="150"></canvas>
 				</div>
+				<div>
+					<canvas id="case4_top" width="200" height="150"></canvas>
+				</div>	
 				<div><p><center><H4>Case 4</H4></center></p></div>
 			</div>
-			<div id="case5">
-				<div>
-					<canvas id="case5_top" width="200" height="150"></canvas>
-				</div>		
+			<div id="case5">	
 				<div>
 					<canvas id="case5_front" width="200" height="150"></canvas>
 				</div>
 				<div>
 					<canvas id="case5_side" width="200" height="150"></canvas>
 				</div>
+				<div>
+					<canvas id="case5_top" width="200" height="150"></canvas>
+				</div>	
 				<div><p><center><H4>Case 1</H4></center></p></div>
 			</div>
-			<div id="case6">
-				<div>
-					<canvas id="case6_top" width="200" height="150" ></canvas>
-				</div>		
+			<div id="case6">	
 				<div>
 					<canvas id="case6_front" width="200" height="150"></canvas>
 				</div>
 				<div>
 					<canvas id="case6_side" width="200" height="150"></canvas>
 				</div>
+				<div>
+					<canvas id="case6_top" width="200" height="150" ></canvas>
+				</div>	
 				<div><p><center><H4>Case 2</H4></center></p></div>
 			</div>
-			<div id="case7">
-				<div>
-					<canvas id="case7_top" width="200" height="150"></canvas>
-				</div>		
+			<div id="case7">	
 				<div>
 					<canvas id="case7_front" width="200" height="150"></canvas>
 				</div>
 				<div>
 					<canvas id="case7_side" width="200" height="150"></canvas>
 				</div>
+				<div>
+					<canvas id="case7_top" width="200" height="150"></canvas>
+				</div>	
 				<div><p><center><H4>Case 3</H4></center></p></div>
 			</div>
-			<div id="case8">
-				<div>
-					<canvas id="case8_top" width="200" height="150"></canvas>
-				</div>		
+			<div id="case8">		
 				<div>
 					<canvas id="case8_front" width="200" height="150"></canvas>
 				</div>
 				<div>
 					<canvas id="case8_side" width="200" height="150"></canvas>
 				</div>
+				<div>
+					<canvas id="case8_top" width="200" height="150"></canvas>
+				</div>
 				<div><p><center><H4>Case 4</H4></center></p></div>
 			</div>
-			<div id="case9">
-				<div>
-					<canvas id="case9_top" width="200" height="150"></canvas>
-				</div>		
+			<div id="case9">	
 				<div>
 					<canvas id="case9_front" width="200" height="150"></canvas>
 				</div>
+				<div>
+					<canvas id="case9_top" width="200" height="150"></canvas>
+				</div>	
 			</div>
 			<br>
 			<!-- Dynamic load images as per ajax response -->
