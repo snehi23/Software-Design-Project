@@ -60,6 +60,7 @@
 			$("#input_div").show();		
 		});
 		
+		
 		$('#img_rp').click(function(event) {		
 			selShape="Rectangular Pyramid";
 			$("#input_div").show();		
@@ -146,7 +147,7 @@
 				selunit = $('input[name="measure"]:checked').val();
 				
 				$.post('VolCalController',{"length":length,"breadth":breadth,"height":height,"unit":selunit,"shape":selShape},function(data){		
-							alert("Ajax successful"+JSON.stringify(data));
+							//alert("Ajax successful"+JSON.stringify(data));
 							Obj = data;
 
 							//hide Other divs and show the result div
@@ -217,19 +218,19 @@
 			
 			if(unitObject.case1 != null){
 				$('img[name="case1"]').show();
-				$('img[name="case1"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case1">');
+				$('img[name="case1"]').replaceWith('<img src="output_images/'+selShape+'_case1.PNG" width="200" height="167" class = "img-rounded" name="case1">');
 			}
 			if(unitObject.case2 != null){
 				$('img[name="case2"]').show();
-				$('img[name="case2"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case2">');
+				$('img[name="case2"]').replaceWith('<img src="output_images/'+selShape+'_case2.PNG" width="200" height="167" class = "img-rounded" name="case2">');
 			}
 			if(unitObject.case3 != null){
 				$('img[name="case3"]').show();
-				$('img[name="case3"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case3">');
+				$('img[name="case3"]').replaceWith('<img src="output_images/'+selShape+'_case3.PNG" width="200" height="167" class = "img-rounded" name="case3">');
 			}
 			if(unitObject.case4 != null){
 				$('img[name="case4"]').show();
-				$('img[name="case4"]').replaceWith('<img src="images/'+selShape+'.jpg" width="200" height="167" class = "img-rounded" name="case4">');
+				$('img[name="case4"]').replaceWith('<img src="output_images/'+selShape+'_case4.PNG" width="200" height="167" class = "img-rounded" name="case4">');
 			}
 		}
 		
@@ -242,26 +243,19 @@
 			
 			if (isNaN(length) || isNaN(breadth) || isNaN(height)) {
 				//alert("Please provide values")
-				$('#errorMessage').text("Please provide values");
+				$('#errorMessage').text("Please provide numeric values");
 				return false;
 			}
 			
 			if (length <= 0 || breadth <= 0 || height <= 0) {
 				
-				//alert("There is some problem with Input\
-				//		\n1. One of your dimension is Zero\
-				//		\nPlease re enter correct values.");
 				$('#errorMessage').text("One of your dimension is Zero");
 				
 				return false;
 			}
 			if (length <= breadth || length <= height) {
 				
-				//alert("There is some problem with Input\
-				//		\n1. Length of wood cannot be less than its Breadth or Height\
-				//		\nPlease re enter correct values.");
-				
-				$('#errorMessage').text("Length of wood cannot be less than its Breadth or Height");
+				$('#errorMessage').text("Difficult to carve out a "+selShape+" From given dimensions");
 				
 				return false;
 				
